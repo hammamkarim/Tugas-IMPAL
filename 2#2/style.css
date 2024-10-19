@@ -1,0 +1,69 @@
+/* Container untuk tampilan dialog USSD */
+.ussd-container {
+  width: 300px;
+  height: auto;
+  padding: 20px;
+  margin: 100px auto;
+  border-radius: 10px;
+  background-color: #ffffff; /* Warna latar belakang putih */
+  border: 2px solid #c0c0c0; /* Border abu-abu */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+  font-family: Arial, sans-serif;
+  color: #000000; /* Warna teks hitam */
+}
+
+/* Teks utama */
+.ussd-container h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+/* Daftar menu */
+.ussd-container ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 14px;
+}
+
+.ussd-container ul li {
+  margin: 10px 0;
+}
+
+/* Input field */
+.ussd-input {
+  width: calc(100% - 20px);
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Tombol */
+.ussd-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.ussd-buttons button {
+  width: 45%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.ussd-buttons button.cancel {
+  background-color: #f44336; /* Warna tombol Cancel merah */
+  color: white;
+}
+
+.ussd-buttons button.send {
+  background-color: #4CAF50; /* Warna tombol Send hijau */
+  color: white;
+}
