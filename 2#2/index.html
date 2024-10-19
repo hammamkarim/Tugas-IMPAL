@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USSD Service</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+  <!-- Container untuk tampilan dialog USSD -->
+  <div class="ussd-container" id="menu-utama">
+    <h3>Mau iPhone 15Plus dr Saskia Chadwick? Hub *500*117#</h3>
+    <ul>
+      <li>1. Transfer Pulsa</li>
+      <li>2. Minta Pulsa</li>
+      <li>3. Auto TP</li>
+      <li>4. Delete Auto TP</li>
+      <li>5. List Auto TP</li>
+      <li>6. Cek Kupon Undian TP</li>
+    </ul>
+    <input type="text" id="input-menu-utama" class="ussd-input" placeholder="Masukkan pilihan Anda">
+    <div class="ussd-buttons">
+      <button class="cancel" onclick="cancelOperation()">Cancel</button>
+      <button class="send" onclick="navigatePage('menu-utama')">Send</button>
+    </div>
+  </div>
+
+  <!-- Halaman untuk Transfer Pulsa -->
+  <div class="ussd-container" id="transfer-pulsa" style="display: none;">
+    <h3>Silahkan masukkan nomor tujuan Transfer Pulsa: (contoh 08xxxx atau 628xxxx)</h3>
+    <input type="text" id="nomor-penerima" class="ussd-input" placeholder="Nomor tujuan">
+    <div class="ussd-buttons">
+      <button class="cancel" onclick="backToMenu()">Cancel</button>
+      <button class="send" onclick="inputNomorTransferPulsa()">Send</button>
+    </div>
+  </div>
+
+  <!-- Halaman untuk konfirmasi transfer pulsa -->
+  <div class="ussd-container" id="konfirmasi-transfer" style="display: none;">
+    <h3>Silahkan masukkan jumlah pulsa yang akan di transfer:</h3>
+    <input type="text" id="jumlah-pulsa" class="ussd-input" placeholder="Jumlah pulsa">
+    <div class="ussd-buttons">
+      <button class="cancel" onclick="backToMenu()">Cancel</button>
+      <button class="send" onclick="confirmTransferPulsa()">Send</button>
+    </div>
+  </div>
+
+  <!-- Halaman untuk Minta Pulsa -->
+  <div class="ussd-container" id="minta-pulsa" style="display: none;">
+    <h3>Masukkan nomor pengirim:</h3>
+    <input type="text" id="nomor-pengirim" class="ussd-input" placeholder="Nomor pengirim">
+    <div class="ussd-buttons">
+      <button class="cancel" onclick="backToMenu()">Cancel</button>
+      <button class="send" onclick="inputNomorMintaPulsa()">Send</button>
+    </div>
+  </div>
+
+  <!-- Halaman untuk konfirmasi minta pulsa -->
+  <div class="ussd-container" id="konfirmasi-minta-pulsa" style="display: none;">
+    <h3>Masukkan jumlah pulsa:</h3>
+    <input type="text" id="jumlah-minta-pulsa" class="ussd-input" placeholder="Jumlah pulsa">
+    <div class="ussd-buttons">
+      <button class="cancel" onclick="backToMenu()">Cancel</button>
+      <button class="send" onclick="confirmMintaPulsa()">Send</button>
+    </div>
+  </div>
+
+  <!-- Halaman untuk Auto TP -->
+  <div class="ussd-container" id="auto-tp" style="display: none;">
+    <h3>Auto Transfer Pulsa</h3>
+    <h4>Masukkan nomor tujuan:</h4>
+    <input type="text" id="auto-tp-nomor" class="ussd-input" placeholder="Nomor tujuan">
+    <div class="ussd-buttons">
+      <button class="cancel" onclick="backToMenu()">Cancel</button>
+      <button class="send" onclick="inputNomorAutoTP()">Send</button>
+    </div>
+  </div>
+
+  <!-- Halaman untuk konfirmasi Auto TP -->
+  <div class="ussd-container" id="konfirmasi-auto-tp" style="display: none;">
+    <h4>Masukkan jumlah pulsa:</h4>
+    <input type="text" id="auto-tp-jumlah" class="ussd-input" placeholder="Jumlah pulsa">
+    <h4>Masukkan frekuensi pengiriman:</h4>
+    <select id="auto-tp-frekuensi" class="ussd-input">
+      <option value="harian">Harian</option>
+      <option value="mingguan">Mingguan</option>
+      <option value="bulanan">Bulanan</option>
+    </select>
+    <div class="ussd-buttons">
+      <button class="cancel" onclick="backToMenu()">Cancel</button>
+      <button class="send" onclick="confirmAutoTP()">Send</button>
+    </div>
+  </div>
+
+  <!-- Halaman untuk menghapus Auto TP -->
+  <div class="ussd-container" id="delete-auto-tp" style="display: none;">
+    <h3>Hapus Auto TP</h3>
+    <h4>Silahkan memasukkan nomor tujuan yang akan dihapus dari List Auto Transfer Pulsa</h4>
+    <input type="text" id="delete-auto-tp-nomor" class="ussd-input" placeholder="Nomor tujuan">
+    <div class="ussd-buttons">
+      <button class="cancel" onclick="backToMenu()">Cancel</button>
+      <button class="send" onclick="confirmDeleteAutoTP()">Send</button>
+    </div>
+  </div>
+
+  <!-- Halaman untuk daftar Auto TP -->
+  <div class="ussd-container" id="list-auto-tp" style="display: none;">
+    <h3>Daftar Auto TP</h3>
+    <ul id="auto-tp-list"></ul>
+    <div class="ussd-buttons" style="display: flex; justify-content: center;">
+      <button class="cancel" onclick="backToMenu()">Kembali ke Menu Utama</button>
+    </div>
+  </div>
+
+  <!-- Halaman untuk konfirmasi -->
+  <div class="ussd-container" id="konfirmasi-sukses" style="display: none;">
+    <h3 id="success-message"></h3>
+    <div class="ussd-buttons" style="display: flex; justify-content: center;">
+      <button class="cancel" onclick="backToMenu()">Kembali ke Menu Utama</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
